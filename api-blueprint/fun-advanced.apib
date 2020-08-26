@@ -1,0 +1,120 @@
+FORMAT: 1A
+
+# Group Question
+
+## Questions [/questions]
+
+### Create a new Question [POST]
+
+ + Request (application/json)
+
+     + Attributes
+
+            + question: Favourite Language? (required)
+            + choices: Swift, `Objective-C` (array, required)
+
+    + Body
+
+            {
+                "question": "Favourite language?",
+                "choices": [
+                    "Swift",
+                    "Objective-C"
+                ]
+            }
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties": {
+                "question": {
+                    "type": "string"
+                },
+                "choices": {
+                    "type": "array",
+                    "items": {
+                    "type": "string"
+                    },
+                    "minItems": 2
+                }
+                }
+            }
+
+ + Response 200 (application/json)
+
+    + Attributes (Company)
+
+### List All Questions [GET]
+
+ + Response 200 (application/json)
+
+    + Attributes (array[Question])
+
+## Question [/questions/{question_id}?{param}]
+
+ + Parameters
+  + question_id: 1 (number) - Question Id for display
+  + param: `status-a=enabled` (optional, nullable) - Search string
+
+### Get a question [GET]
+
+  + Response 200 (application/json)
+
+    + Attributes(Question)
+
+
+# Group Products
+
+## Products [/products]
+
+### List All Products [GET]
+
++ Response 200 (application/json)
+  + Attributes (array, fixed-type)
+        + (object)
+            + name: API Blueprint
+            + price: 2.99 (string) - Price to purchase the product, as a string or a number
+            + state (enum)
+                + `in stock`
+                + `sold-out`
+
+## Data Structures
+
+### Question
++ question: Favourite programming language? (required)
++ published_at: `2014-11-11T08:40:51.620Z` (required)
++ url: /questions/1 (required)
++ choices (array[Choice], required)
+
+### Choice
++ choice: Javascript (required)
++ url: /questions/1/choices/1 (required)
++ votes: 2048 (number, required)
+
+### Person
++ name: Marumar (string) - The Person's name
++ age: 16 (number) - The Person's age
+
+### Administrator (Person)
++ role: Admin (string) - The Person's role
+
+### Company
++ name: Apiary
++ founder (Person)
++ founded: 2011 (number) - The year in which the company was founded
++ address
+    + street: 235 Ninth Street
+    + city: San Francisco
+    + state: California
+
+## Example
+
++ name (string)
++ `is_admin` (boolean)
++ age (number)
++ extra (array)
+    + hello world
+    + 2 (number)
+    + true (boolean)

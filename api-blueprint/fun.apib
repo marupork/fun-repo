@@ -1,0 +1,61 @@
+FORMAT: 1A
+
+# Polls
+
+# Group Questions
+Resources related to questions in the API.
+
+## Question Collection [/questions]
+
+### List All Questions [GET]
+ + Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?"
+            },
+             {
+                "question": "What is love?"
+            },
+        ]
+
+### Create a new Question [POST]
+
+ + question (string) - The question
+
+ + Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+        }
+
+ + Response 201 (application/json)
+
+  + Headers
+
+            Location: /questions/1
+
+  + Body
+
+            {
+                "question": "Favourite programming language?",
+            }
+
+## Question [/questions/{question_id}]
+
+  + Parameters
+    + question_id (number) - ID of the Question in the form of an integer
+
+### View a Questions Detail [GET]
+
+  + Response 200 (application/json)
+
+        {
+            "question": "Favourite programming language?",
+        }
+
+### Delete a question [DELETE]
+
+  + Response 204
+
+# Group Exams
